@@ -242,6 +242,9 @@ class App extends Component {
         // Otherwise ensure its removed from the recent list
         this.removeRecentSession(auth)
       }
+      this.setState({
+        wallet: undefined,
+      })
     } else {
       // If not the current session, setup the specific wallet for a logout call (to hook into their session handlers)
       const wallet = await this.getWallet(auth.provider)
@@ -252,7 +255,6 @@ class App extends Component {
     this.setState({
       session,
       sessions,
-      wallet: undefined,
     })
   }
   // Sign (but not broadcast) a test transaction
