@@ -269,7 +269,7 @@ class App extends Component {
       // Retrieve current user information from transit
       const { actor, permission } = session
       // Call transact on the session
-      const result = await wallet.eosApi.transact({
+      const response = await wallet.eosApi.transact({
         actions: [
           {
             account: 'eosio',
@@ -292,9 +292,7 @@ class App extends Component {
       })
       // Update application state with the results of the transaction
       this.setState({
-        response: {
-          transaction: result
-        },
+        response,
         transacting: false
       });
     } catch(e) {
