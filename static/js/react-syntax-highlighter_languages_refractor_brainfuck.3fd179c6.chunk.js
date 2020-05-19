@@ -1,2 +1,0 @@
-(this["webpackJsonpeos-transit-demo-multipass"]=this["webpackJsonpeos-transit-demo-multipass"]||[]).push([[18],{659:function(t,a,e){"use strict";function s(t){t.languages.brainfuck={pointer:{pattern:/<|>/,alias:"keyword"},increment:{pattern:/\+/,alias:"inserted"},decrement:{pattern:/-/,alias:"deleted"},branching:{pattern:/\[|\]/,alias:"important"},operator:/[.,]/,comment:/\S+/}}t.exports=s,s.displayName="brainfuck",s.aliases=[]}}]);
-//# sourceMappingURL=react-syntax-highlighter_languages_refractor_brainfuck.3fd179c6.chunk.js.map
