@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/eos-transit-demo-multipass/precache-manifest.653a6a300d85a1ba3604c5495230810c.js"
+  "/eos-transit-demo-multipass/precache-manifest.89924cfcb3b81229677944cd7712f348.js"
 );
 
 self.addEventListener('message', (event) => {
