@@ -250,8 +250,10 @@ class App extends Component {
     } else {
       // If not the current session, setup the specific wallet for a logout call (to hook into their session handlers)
       const wallet = await this.getWallet(auth.provider)
-      // Call logout for this provider to allow the secondary parameter
-      await wallet.provider.logout(auth.actor, auth.permission)
+      if (wallet.provider) {
+        // Call logout for this provider to allow the secondary parameter
+        await wallet.provider.logout(auth.actor, auth.permission)        
+      }
     }
     // update local state
     this.setState({
