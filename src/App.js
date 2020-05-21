@@ -52,7 +52,8 @@ class App extends Component {
   }
   // React State Helper to update chainId while switching blockchains
   setChainId = (e, { value }) => this.setState({
-    chainId: value
+    chainId: value,
+    response: undefined,
   }, () => {
     const searchParams = new URLSearchParams(window.location.search)
     searchParams.set('chainId', value)
@@ -137,6 +138,7 @@ class App extends Component {
       this.setRecentSession(session)
       // Update state with the current session, all available sessions, and the wallet
       this.setState({
+        response: undefined,
         session,
         sessions,
         wallet,
@@ -270,7 +272,7 @@ class App extends Component {
     try {
       // Retrieve current user information from transit
       const { actor, permission } = session
-      // Call transact on the session
+      // Call transact on the session (compatible with eosjs.transact)
       const response = await wallet.eosApi.transact({
         actions: [
           {
@@ -285,10 +287,18 @@ class App extends Component {
           }
         ],
       }, {
-        // Optional: Whether eos-transit should broadcast this transaction
-        //    For this demo, eos-transit will not broadcast the transaction after receiving it
+        // Optional: Prevent anchor-link from broadcasting this transaction (default: True)
+        //
+        //    The wallet/signer connected to this app will NOT broadcast the transaction
+        //    as is defined by the anchor-link protocol. Broadcasting is the responsibility
+        //    of anchor-link running inside an application (like this demo).
+        //
+        //    For this demo specifically we do NOT want the transaction to ever be broadcast
+        //    to the blockchain, so we're disabling it here.
+        //
+        //    For all normal applications using anchor-link, you can omit this.
         broadcast: false,
-        // Optional: TAPOS values
+        // TAPOS values
         blocksBehind: 3,
         expireSeconds: 120,
       })
